@@ -170,11 +170,11 @@ body {
         gap: 5px;
     }
 
-    .timer span {
+    .timer .time {
         margin: 5px;
     }
 
-    .timer span:last-child {
+    .timer .time:last-child {
         width: 25px;
         height: 25px;
         font-size: 23px;
