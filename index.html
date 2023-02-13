@@ -24,9 +24,9 @@
                 m = checkTime(m);
                 s = checkTime(s);
 
-                document.querySelector(
-                    ".timer"
-                ).innerHTML = `<span class="hour"> ${h} </span>  <span class="minute"> ${m} </span>  <span class="second"> ${s} </span>`;
+                document.querySelector(".hour").innerHTML = h;
+                document.querySelector(".minute").innerHTML = m;
+                document.querySelector(".second").innerHTML = s;
 
                 var t = setTimeout(function () {
                     startTime();
@@ -43,6 +43,25 @@
         <link rel="stylesheet" href="./style.css" />
     </head>
     <body onload="startTime()">
-        <div class="timer"></div>
+        <div class="timer">
+            <div class="time"><span class="hour"> </span></div>
+            <div class="time"><span class="minute"> </span></div>
+            <div class="time"><span class="second"> </span></div>
+        </div>
+        <div class="change-color">
+            <div class="change-color--wrapper">
+                <div class="color-btn dark-body-color"></div>
+                <div class="color-btn white-body-color"></div>
+                <div class="color-btn spring-body-color"></div>
+                <div class="color-btn summer-body-color"></div>
+                <div class="color-btn fall-body-color"></div>
+                <div class="color-btn winter-body-color"></div>
+            </div>
+            <div class="show-btn">
+                <img src="./img/icon/left-arrow.png" alt="show icon" />
+            </div>
+        </div>
+
+        <script src="main.js"></script>
     </body>
 </html>

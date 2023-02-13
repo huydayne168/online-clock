@@ -1,12 +1,18 @@
+* {
+    transition: all ease 300ms;
+}
+
 body {
-    margin: 10px;
-    height: 90vh;
+    margin: 0px;
+    height: 100vh;
     font-family: "Roboto", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #202124;
+    background-color: var(--dark-body-color);
 }
+
+/*=========================== kết thúc phần phối màu ==========================*/
 
 .timer {
     position: relative;
@@ -20,16 +26,16 @@ body {
     transition: all ease;
 }
 
-.timer span {
+.timer .time {
     display: inline-block;
     padding: 21px;
     margin: 10px;
     border-radius: 10px;
-    background-color: #525357;
+    background-color: var(--dark-time-color);
     box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.05);
 }
 
-.timer span:last-child {
+.timer .time:last-child {
     width: 50px;
     height: 50px;
     font-size: 45px;
@@ -37,6 +43,125 @@ body {
     left: 100%;
     top: 55%;
 }
+
+/* ========change color============ */
+
+.change-color {
+    position: absolute;
+    top: calc(100% - 75px);
+    right: 2%;
+    box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.05);
+}
+
+.change-color--wrapper {
+    padding: 10px 10px 10px 20px;
+    background-color: var(--dark-time-color);
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.color-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all ease 300ms;
+}
+
+.color-btn:hover {
+    cursor: pointer;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    /* background-color: blue; */
+}
+
+.show-btn {
+    padding: 0 3px;
+    position: absolute;
+    top: 0%;
+    right: 101%;
+    display: flex;
+    align-items: center;
+    background-color: var(--dark-time-color);
+    height: 100%;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.show-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/*===================================== phối màu sắc cho trang ======================================*/
+
+:root {
+    /* dark color */
+    --dark-body-color: #202124;
+    --dark-time-color: #525357;
+
+    /* white color */
+    --white-body-color: #fff;
+    --white-time-color: #9c9fae;
+
+    /* summer color */
+    --summer-body-color: #658864;
+    --summer-time-color: #b7b78a;
+
+    /* winter color */
+    --winter-body-color: #002b5b;
+    --winter-time-color: #2b4865;
+
+    /* spring color */
+    --spring-body-color: #f9ceee;
+    --spring-time-color: #ffffe8;
+
+    /* fall color */
+    --fall-body-color: #e3c770;
+    --fall-time-color: #fecd70;
+}
+
+/* màu body và color-btn */
+.dark-body-color {
+    background-color: var(--dark-body-color);
+}
+.white-body-color {
+    background-color: var(--white-body-color);
+}
+.spring-body-color {
+    background-color: var(--spring-body-color);
+}
+.summer-body-color {
+    background-color: var(--summer-body-color);
+}
+.fall-body-color {
+    background-color: var(--fall-body-color);
+}
+.winter-body-color {
+    background-color: var(--winter-body-color);
+}
+
+/* màu phần time và box chọn màu */
+.dark-time-color {
+    background-color: var(--dark-time-color);
+}
+.white-time-color {
+    background-color: var(--white-time-color);
+}
+.spring-time-color {
+    background-color: var(--spring-time-color);
+}
+.summer-time-color {
+    background-color: var(--summer-time-color);
+}
+.fall-time-color {
+    background-color: var(--fall-time-color);
+}
+.winter-time-color {
+    background-color: var(--winter-time-color);
+}
+/*=========================== kết thúc phần phối màu ==========================*/
+
+/* =========mobile screen=========== */
 
 @media screen and (max-width: 739px) {
     .timer {
