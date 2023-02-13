@@ -21,7 +21,7 @@ body {
 
 .timer span {
     display: inline-block;
-    padding: 20px;
+    padding: 21px;
     margin: 10px;
     border-radius: 10px;
     background-color: #525357;
@@ -36,9 +36,3 @@ body {
     left: 100%;
     top: 55%;
 }
-
-/* @media only screen and (max-width: 739px) {
-    .timer {
-        font-size: 100px;
-    }
-} */
