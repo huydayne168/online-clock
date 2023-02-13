@@ -164,6 +164,9 @@ body {
 /* =========mobile screen=========== */
 
 @media screen and (max-width: 739px) {
+    body {
+        padding: 10px;
+    }
     .timer {
         flex-direction: column;
         font-size: 100px;
