@@ -47,13 +47,17 @@ body {
 /* ========change color============ */
 
 .change-color {
+    display: flex;
+    flex-direction: row-reverse;
     position: absolute;
     top: calc(100% - 75px);
     right: 2%;
-    box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.05);
+    /* box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.05); */
+    overflow: hidden;
 }
 
 .change-color--wrapper {
+    transform: translateX(100%);
     padding: 10px 10px 10px 20px;
     background-color: var(--dark-time-color);
     border-radius: 10px;
@@ -74,22 +78,30 @@ body {
     /* background-color: blue; */
 }
 
-.show-btn {
+.arrow-btn {
+    margin-right: 5px;
     padding: 0 3px;
-    position: absolute;
-    top: 0%;
-    right: 101%;
+    justify-content: stretch;
     display: flex;
     align-items: center;
     background-color: var(--dark-time-color);
-    height: 100%;
     border-radius: 7px;
     cursor: pointer;
+    transform: translateX(320px);
 }
 
-.show-btn img {
+.arrow-btn img {
     width: 20px;
     height: 20px;
+}
+
+/* =====thay đổi class */
+.trans {
+    transform: translateX(0px);
+}
+
+.hide-btn {
+    transform: rotate(180deg);
 }
 
 /*===================================== phối màu sắc cho trang ======================================*/
@@ -101,7 +113,7 @@ body {
 
     /* white color */
     --white-body-color: #fff;
-    --white-time-color: #9c9fae;
+    --white-time-color: #f6ecbf;
 
     /* summer color */
     --summer-body-color: #658864;
@@ -165,7 +177,7 @@ body {
 
 @media screen and (max-width: 739px) {
     body {
-        padding: 10px;
+        padding: 8px;
     }
     .timer {
         flex-direction: column;
