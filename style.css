@@ -1,0 +1,15 @@
+body {
+    height: 90vh;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #202124;
+}
+
+.timer {
+    color: #fff;
+    font-size: 250px;
+    font-weight: 500;
+    transition: all ease;
+}
