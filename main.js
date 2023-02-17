@@ -21,6 +21,7 @@ const winterBtn = document.querySelector(".color-btn:nth-child(6)");
 
 let changeColorWidth = changeColorWrapper.offsetWidth;
 
+// ần hiện thanh chọn màu
 var status = -1;
 arrowBtn.addEventListener("click", function () {
     if (status == -1) {
@@ -28,7 +29,6 @@ arrowBtn.addEventListener("click", function () {
         arrowBtn.classList.add("trans");
         arrowBtnImg.classList.add("hide-btn");
 
-        // changeColor.style = "overflow: visible";
         status = 1;
     } else if (status == 1) {
         changeColorWrapper.classList.remove("trans");
@@ -36,7 +36,7 @@ arrowBtn.addEventListener("click", function () {
         arrowBtnImg.classList.remove("hide-btn");
         status = -1;
     }
-    console.log(status);
+    // console.log(status);
 });
 
 // ==========chuyển màu trang web:
@@ -97,4 +97,28 @@ winterBtn.addEventListener("click", function () {
 });
 // ===============xong phần chuyển màu trang web
 
-// ===============ẩn hiện bảng chọn màu
+// ====================phần nghe nhạc==================
+const musicWrapper = document.querySelector(".music-wrapper");
+const musicBodyWrapper = document.querySelector(".body-wrapper ");
+const musicBody = document.querySelector(".music-wrapper .body");
+const musicThumb = document.querySelector(".music-thumb");
+
+// ẩn hiện thanh nghe nhạc:
+var check = -1;
+musicThumb.addEventListener("click", function () {
+    if (check == -1) {
+        musicBody.style = "display: block";
+        musicBodyWrapper.style = "opacity: 1";
+        musicThumb.classList.add("music-thumb--trans");
+        // musicBody.classList.add("show");
+        check = 1;
+        console.log(check);
+    } else if (check == 1) {
+        musicBody.style = "display: none";
+        musicBodyWrapper.style = "opacity: 0";
+        musicThumb.classList.remove("music-thumb--trans");
+        // musicBody.classList.remove("show");
+        check = -1;
+        console.log(check);
+    }
+});

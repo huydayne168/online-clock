@@ -4,11 +4,11 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Chill Clock</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
             rel="stylesheet"
         />
 
@@ -43,11 +43,14 @@
         <link rel="stylesheet" href="./style.css" />
     </head>
     <body onload="startTime()">
+        <!-- clock -->
         <div class="timer">
             <div class="time"><span class="hour"> </span></div>
             <div class="time"><span class="minute"> </span></div>
             <div class="time"><span class="second"> </span></div>
         </div>
+
+        <!-- thanh chọn màu -->
         <div class="change-color">
             <div class="change-color--wrapper">
                 <div class="color-btn dark-body-color"></div>
@@ -62,6 +65,50 @@
             </div>
         </div>
 
+        <!-- listening to music part -->
+        <div class="music-part">
+            <div class="music-wrapper">
+                <div class="body-wrapper">
+                    <div class="body">
+                        <div class="desc">
+                            <div class="name">this is a music's name</div>
+                            <div class="artist">names of artists</div>
+                        </div>
+                        <div class="buttons">
+                            <div class="btn shuffle-btn">
+                                <img src="./img/icon/shuffle.png" alt="" />
+                            </div>
+                            <div class="btn prev-btn">
+                                <img src="./img/icon/prev-icon.webp" alt="" />
+                            </div>
+                            <div class="btn play-btn">
+                                <img src="./img/icon/play.png" alt="" />
+                            </div>
+                            <div class="btn next-btn">
+                                <img src="./img/icon/next.png" alt="" />
+                            </div>
+                            <div class="btn repeat-btn">
+                                <img src="./img/icon/repeat.png" alt="" />
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <input
+                                id="progress"
+                                class="progress"
+                                type="range"
+                                value="0"
+                                step="1"
+                                min="0"
+                                max="100"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="music-thumb">
+                    <img src="./img/icon/music.png" alt="music thumb" />
+                </div>
+            </div>
+        </div>
         <script src="main.js"></script>
     </body>
 </html>
