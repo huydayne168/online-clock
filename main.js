@@ -8,6 +8,7 @@ const timeS = document.querySelector(".timer .time:nth-child(3)");
 const arrowBtn = document.querySelector(".arrow-btn");
 const arrowBtnImg = document.querySelector(".arrow-btn img");
 
+// biến chuyển màu
 const changeColor = document.querySelector(".change-color");
 const changeColorWrapper = document.querySelector(".change-color--wrapper");
 const colorBtn = document.querySelectorAll(".color-btn");
@@ -21,7 +22,7 @@ const winterBtn = document.querySelector(".color-btn:nth-child(6)");
 
 let changeColorWidth = changeColorWrapper.offsetWidth;
 
-// ần hiện thanh chọn màu
+// ẩn hiện thanh chọn màu
 var status = -1;
 arrowBtn.addEventListener("click", function () {
     if (status == -1) {
@@ -39,6 +40,54 @@ arrowBtn.addEventListener("click", function () {
     // console.log(status);
 });
 
+// ====================phần nghe nhạc==================
+const musicWrapper = document.querySelector(".music-wrapper");
+const musicBodyWrapper = document.querySelector(".body-wrapper ");
+const musicBody = document.querySelector(".music-wrapper .body");
+const musicDesc = document.querySelector(".music-wrapper .desc");
+const musicThumb = document.querySelector(".music-thumb");
+const listBtn = document.querySelector(".list-btn");
+const listSong = document.querySelector(".list-songs");
+const listSongWrapper = document.querySelector(".list-songs--wrapper");
+
+// ẩn hiện thanh nghe nhạc:
+var checkMusicBar = -1;
+musicThumb.addEventListener("click", function () {
+    if (checkMusicBar == -1) {
+        musicBodyWrapper.classList.remove("opacity-0");
+        musicBody.style = "display: block";
+        musicBodyWrapper.classList.add("opacity-1");
+        musicThumb.classList.add("music-thumb--trans");
+        // musicBody.classList.add("show");
+        checkMusicBar = 1;
+    } else if (checkMusicBar == 1) {
+        musicBodyWrapper.classList.remove("opacity-1");
+        musicBody.style = "display: none";
+        musicBody.classList.add("dis-none");
+        musicBodyWrapper.classList.add("opacity-0");
+        musicThumb.classList.remove("music-thumb--trans");
+        if (checkListSong == 1) {
+            listSongWrapper.classList.remove("list-songs--trans");
+            checkListSong = -1;
+        }
+        // musicBody.classList.remove("show");
+        checkMusicBar = -1;
+    }
+});
+
+// ẩn hiện playlist:
+
+var checkListSong = -1;
+listBtn.addEventListener("click", function () {
+    if (checkListSong == -1) {
+        listSongWrapper.classList.add("list-songs--trans");
+        checkListSong = 1;
+    } else if (checkListSong == 1) {
+        listSongWrapper.classList.remove("list-songs--trans");
+        checkListSong = -1;
+    }
+});
+
 // ==========chuyển màu trang web:
 darkBtn.addEventListener("click", function () {
     body.style = "background-color: var(--dark-body-color)";
@@ -47,7 +96,10 @@ darkBtn.addEventListener("click", function () {
     timeS.style = "background-color: var(--dark-time-color)";
     changeColorWrapper.style = "background-color: var(--dark-time-color)";
     arrowBtn.style = "background-color: var(--dark-time-color)";
+    musicBodyWrapper.style = "background-color: var(--dark-time-color)";
+    musicThumb.style = "background-color: var(--dark-time-color)";
     timer.style = "color: #fff";
+    musicDesc.style = "color: #fff";
 });
 
 whiteBtn.addEventListener("click", function () {
@@ -57,7 +109,10 @@ whiteBtn.addEventListener("click", function () {
     timeS.style = "background-color: var(--white-time-color)";
     changeColorWrapper.style = "background-color: var(--white-time-color)";
     arrowBtn.style = "background-color: var(--white-time-color)";
+    musicBodyWrapper.style = "background-color: var(--white-time-color)";
+    musicThumb.style = "background-color: var(--white-time-color)";
     timer.style = "color: #fff";
+    musicDesc.style = "color: #fff";
 });
 springBtn.addEventListener("click", function () {
     body.style = "background-color: var(--spring-body-color)";
@@ -66,7 +121,10 @@ springBtn.addEventListener("click", function () {
     timeS.style = "background-color: var(--spring-time-color)";
     changeColorWrapper.style = "background-color: var(--spring-time-color)";
     arrowBtn.style = "background-color: var(--spring-time-color)";
+    musicBodyWrapper.style = "background-color: var(--spring-time-color)";
+    musicThumb.style = "background-color: var(--spring-time-color)";
     timer.style = "color: #AACB73";
+    musicDesc.style = "color: #AACB73";
 });
 summerBtn.addEventListener("click", function () {
     body.style = "background-color: var(--summer-body-color)";
@@ -75,7 +133,10 @@ summerBtn.addEventListener("click", function () {
     timeS.style = "background-color: var(--summer-time-color)";
     changeColorWrapper.style = "background-color: var(--summer-time-color)";
     arrowBtn.style = "background-color: var(--summer-time-color)";
+    musicBodyWrapper.style = "background-color: var(--summer-time-color)";
+    musicThumb.style = "background-color: var(--summer-time-color)";
     timer.style = "color: #fff";
+    musicDesc.style = "color: #fff";
 });
 fallBtn.addEventListener("click", function () {
     body.style = "background-color: var(--fall-body-color)";
@@ -84,7 +145,10 @@ fallBtn.addEventListener("click", function () {
     timeS.style = "background-color: var(--fall-time-color)";
     changeColorWrapper.style = "background-color: var(--fall-time-color)";
     arrowBtn.style = "background-color: var(--fall-time-color)";
+    musicBodyWrapper.style = "background-color: var(--fall-time-color)";
+    musicThumb.style = "background-color: var(--fall-time-color)";
     timer.style = "color: #fff";
+    musicDesc.style = "color: #fff";
 });
 winterBtn.addEventListener("click", function () {
     body.style = "background-color: var(--winter-body-color)";
@@ -93,32 +157,9 @@ winterBtn.addEventListener("click", function () {
     timeS.style = "background-color: var(--winter-time-color)";
     changeColorWrapper.style = "background-color: var(--winter-time-color)";
     arrowBtn.style = "background-color: var(--winter-time-color)";
+    musicBodyWrapper.style = "background-color: var(--winter-time-color)";
+    musicThumb.style = "background-color: var(--winter-time-color)";
     timer.style = "color: #fff";
+    musicDesc.style = "color: #fff";
 });
 // ===============xong phần chuyển màu trang web
-
-// ====================phần nghe nhạc==================
-const musicWrapper = document.querySelector(".music-wrapper");
-const musicBodyWrapper = document.querySelector(".body-wrapper ");
-const musicBody = document.querySelector(".music-wrapper .body");
-const musicThumb = document.querySelector(".music-thumb");
-
-// ẩn hiện thanh nghe nhạc:
-var check = -1;
-musicThumb.addEventListener("click", function () {
-    if (check == -1) {
-        musicBody.style = "display: block";
-        musicBodyWrapper.style = "opacity: 1";
-        musicThumb.classList.add("music-thumb--trans");
-        // musicBody.classList.add("show");
-        check = 1;
-        console.log(check);
-    } else if (check == 1) {
-        musicBody.style = "display: none";
-        musicBodyWrapper.style = "opacity: 0";
-        musicThumb.classList.remove("music-thumb--trans");
-        // musicBody.classList.remove("show");
-        check = -1;
-        console.log(check);
-    }
-});
