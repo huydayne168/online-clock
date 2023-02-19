@@ -184,6 +184,7 @@ body {
 
 /* ========================== phần listening to music ==========================  */
 
+/* =========thanh phats nhac============= */
 .music-part {
 }
 
@@ -220,7 +221,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0.5;
+    opacity: 0.8;
     border-radius: 50%;
     background-color: var(--dark-time-color);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
@@ -232,7 +233,9 @@ body {
 }
 
 .music-wrapper .music-thumb img {
-    /* width: 32px; */
+    object-fit: contain;
+    width: 60px;
+    border-radius: 50%;
 }
 
 .music-wrapper .desc {
@@ -255,6 +258,8 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    width: 40px;
+    height: 38.75px;
 
     /* background-color: var(--dark-body-color); */
 }
@@ -267,11 +272,29 @@ body {
 .music-wrapper .buttons img {
     padding: 8px;
     width: 13px;
-    height: 13px;
+    /* height: 13px; */
 }
 
-.music-wrapper .buttons .play-btn img {
-    width: 15px;
+.music-wrapper .buttons .play-btn {
+    /* position: relative; */
+    /* background-color: gray; */
+}
+
+.music-wrapper .play-btn .pause-btn {
+    width: 28px;
+    display: none;
+}
+
+.body-wrapper.playing .pause-btn {
+    display: inline-block;
+}
+
+.body-wrapper.playing .playing-btn {
+    display: none;
+}
+
+.music-wrapper .play-btn .playing-btn {
+    width: 20px;
     height: auto;
     padding-left: 12px;
 }
@@ -287,6 +310,9 @@ body {
 .music-wrapper .list-btn img {
     width: 20px;
     /* height: 15px; */
+}
+
+.music-wrapper .desc .name {
 }
 
 .music-wrapper .desc .artist {
@@ -334,7 +360,7 @@ body {
 }
 
 .song {
-    width: 300px;
+    width: 335px;
     padding: 10px;
     display: flex;
     gap: 10px;
@@ -347,6 +373,11 @@ body {
     background-color: #5a5a5ac2;
 }
 
+.active {
+    box-shadow: 15px 16px 32px rgba(0, 0, 0, 0.1);
+    background-color: #5a5a5ac2;
+}
+
 .song .thumb {
     width: 42px;
     height: 42px;
@@ -355,16 +386,24 @@ body {
     margin: 0 8px;
 }
 
+.song .thumb img {
+    object-fit: cover;
+    width: 42px;
+    height: 42px;
+}
+
 .song .song-body {
     color: #fff;
 }
 
 .song .song-body .title {
     margin: 0;
+    font-size: 1.6rem;
 }
 
 .song .song-body .author {
     margin: 0;
+    font-size: 1.2rem;
 }
 
 /* các style dùng để sử dụng với js trong phần music */

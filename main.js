@@ -46,9 +46,12 @@ const musicBodyWrapper = document.querySelector(".body-wrapper ");
 const musicBody = document.querySelector(".music-wrapper .body");
 const musicDesc = document.querySelector(".music-wrapper .desc");
 const musicThumb = document.querySelector(".music-thumb");
+const musicThumbImg = document.querySelector(".music-thumb img");
 const listBtn = document.querySelector(".list-btn");
 const listSong = document.querySelector(".list-songs");
 const listSongWrapper = document.querySelector(".list-songs--wrapper");
+const musicBodyName = document.querySelector(".music-wrapper .desc .name");
+const musicBodyArtist = document.querySelector(".music-wrapper .desc .artist");
 
 // ẩn hiện thanh nghe nhạc:
 var checkMusicBar = -1;
@@ -163,3 +166,129 @@ winterBtn.addEventListener("click", function () {
     musicDesc.style = "color: #fff";
 });
 // ===============xong phần chuyển màu trang web
+
+//============================================== phần phát nhạc và các thứ liên quan:
+const audio = document.querySelector("#audio");
+const playBtn = document.querySelector(".music-wrapper .buttons .play-btn");
+const progress = document.querySelector("#progress");
+
+const app = {
+    currentIndex: 2,
+    isPlaying: false,
+    isRandom: false,
+    isRepeat: false,
+    // danh sách các bài nhạc hiện có
+    songs: [
+        {
+            name: "Rồi ta sẽ ngắm pháo hoa cùng nhau",
+            singer: "O.Lew",
+            path: "./music/roitasengamphaohoacungnhau.mp3",
+            thumb: "./img/song-thumb/roitasengamphaohoacungnhau.jpg",
+        },
+        {
+            name: "Luôn Yêu Đời",
+            singer: "Đen ft Chen",
+            path: "./music/LuonYeuDoi.mp3",
+            thumb: "./img/song-thumb/luonyeudoi.jpg",
+        },
+        {
+            name: "Đứa nào làm em buồn?",
+            singer: "Phúc Du ft Hoàng Dũng",
+            path: "./music/DuaNaoLamEmBuon.mp3",
+            thumb: "./img/song-thumb/duanaolamembuonthe.jpg",
+        },
+        {
+            name: "Nơi này có anh",
+            singer: "Sơn Tùng-MTP",
+            path: "./music/noinaycoanh.mp3",
+            thumb: "./img/song-thumb/noinaycoanh.jpg",
+        },
+        {
+            name: "Để tôi ôm em bằng giai điệu này",
+            singer: "Kai Đinh ft Min, Grey D",
+            path: "./music/DeToiOmEmBangGiaiDieuNay.mp3",
+            thumb: "./img/song-thumb/detoiomembanggiaidieunay.jpg",
+        },
+    ],
+
+    // render bài nhạc vào playlist:
+    render: function () {
+        const htmls = this.songs.map((song) => {
+            return `<div class="song">
+                <div
+                class="thumb"
+                style="
+                    background-image: url('${song.thumb}');
+                "
+            ></div>
+            <div class="song-body">
+                <h3 class="title">${song.name}</h3>
+                <p class="author">${song.singer}</p>
+            </div>
+            <div class="option">
+                <i class="fas fa-ellipsis-h"></i>
+            </div>
+        </div>`;
+        });
+        listSongWrapper.innerHTML = htmls.join("");
+    },
+
+    // xử lí các sự kiện:
+    handleEvents: function () {
+        const _this = this;
+        // bam phat/stop nhac:
+        playBtn.addEventListener("click", function () {
+            if (_this.isPlaying) {
+                audio.pause();
+                musicBodyWrapper.classList.remove("playing");
+                _this.isPlaying = false;
+                console.log(this);
+            } else {
+                audio.play();
+                musicBodyWrapper.classList.add("playing");
+                _this.isPlaying = true;
+            }
+        });
+
+        // cho phần progress chạy theo nhạc:
+        progress.addEventListener("change", function (e) {
+            audio.currentTime = (Number(e.target.value) * audio.duration) / 100;
+        });
+        audio.ontimeupdate = function () {
+            if (audio.duration) {
+                const progressPercent = Math.floor(
+                    (audio.currentTime / audio.duration) * 100
+                );
+                progress.value = progressPercent;
+            }
+        };
+
+        // tua nhạc phần progress:
+    },
+
+    // định nghĩa phương thức:
+    defineProperties: function () {
+        Object.defineProperty(this, "currentSong", {
+            get: function () {
+                return this.songs[this.currentIndex];
+            },
+        });
+    },
+
+    // tải ra bài nhạc đang nghe:
+    loadCurrentSong: function () {
+        musicBodyName.textContent = this.currentSong.name;
+        musicBodyArtist.textContent = this.currentSong.singer;
+        musicThumbImg.src = this.currentSong.thumb;
+        audio.src = this.currentSong.path;
+    },
+
+    start: function () {
+        this.defineProperties();
+        this.render();
+        this.handleEvents();
+        this.loadCurrentSong();
+    },
+};
+
+app.start();
