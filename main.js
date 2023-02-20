@@ -171,9 +171,11 @@ winterBtn.addEventListener("click", function () {
 const audio = document.querySelector("#audio");
 const playBtn = document.querySelector(".music-wrapper .buttons .play-btn");
 const progress = document.querySelector("#progress");
+const nextBtn = document.querySelector(".next-btn");
+const prevBtn = document.querySelector(".prev-btn");
 
 const app = {
-    currentIndex: 2,
+    currentIndex: 0,
     isPlaying: false,
     isRandom: false,
     isRepeat: false,
@@ -213,8 +215,10 @@ const app = {
 
     // render bài nhạc vào playlist:
     render: function () {
-        const htmls = this.songs.map((song) => {
-            return `<div class="song">
+        const htmls = this.songs.map((song, index) => {
+            return `<div class="song ${
+                index === this.currentIndex ? "active" : ""
+            }" data-index = ${index}>
                 <div
                 class="thumb"
                 style="
@@ -239,31 +243,75 @@ const app = {
         // bam phat/stop nhac:
         playBtn.addEventListener("click", function () {
             if (_this.isPlaying) {
-                audio.pause();
-                musicBodyWrapper.classList.remove("playing");
-                _this.isPlaying = false;
-                console.log(this);
+                pause();
             } else {
-                audio.play();
-                musicBodyWrapper.classList.add("playing");
-                _this.isPlaying = true;
+                play();
             }
         });
 
+        function pause() {
+            audio.pause();
+            musicBodyWrapper.classList.remove("playing");
+            _this.isPlaying = false;
+        }
+
+        function play() {
+            audio.play();
+            musicBodyWrapper.classList.add("playing");
+            _this.isPlaying = true;
+        }
+
         // cho phần progress chạy theo nhạc:
-        progress.addEventListener("change", function (e) {
-            audio.currentTime = (Number(e.target.value) * audio.duration) / 100;
-        });
+
         audio.ontimeupdate = function () {
             if (audio.duration) {
-                const progressPercent = Math.floor(
-                    (audio.currentTime / audio.duration) * 100
-                );
-                progress.value = progressPercent;
+                progress.value = (audio.currentTime / audio.duration) * 100;
+                if (audio.currentTime == audio.duration) {
+                    progress.value = 0;
+                    pause();
+                }
             }
         };
 
         // tua nhạc phần progress:
+
+        progress.addEventListener("change", function (e) {
+            audio.currentTime = (Number(e.target.value) * audio.duration) / 100;
+        });
+
+        // xử lí next bài nhạc:
+        nextBtn.addEventListener("click", function () {
+            _this.nextSong();
+            console.log(_this.currentIndex);
+            play();
+        });
+
+        // xử lí prev bài nhạc:
+        prevBtn.addEventListener("click", function () {
+            _this.prevSong();
+            console.log(_this.currentIndex);
+            play();
+        });
+    },
+
+    nextSong: function () {
+        if (Number(this.currentIndex) < this.songs.length - 1) {
+            this.currentIndex++;
+            this.loadCurrentSong();
+        } else {
+            this.currentIndex = 0;
+            this.loadCurrentSong();
+        }
+    },
+
+    prevSong: function () {
+        if (Number(this.currentIndex) > 0) {
+            this.currentIndex--;
+            this.loadCurrentSong();
+        } else {
+            this.currentIndex = this.songs.length - 1;
+            this.loadCurrentSong();
+        }
     },
 
     // định nghĩa phương thức:
