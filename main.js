@@ -173,9 +173,11 @@ const playBtn = document.querySelector(".music-wrapper .buttons .play-btn");
 const progress = document.querySelector("#progress");
 const nextBtn = document.querySelector(".next-btn");
 const prevBtn = document.querySelector(".prev-btn");
+const songsInList = document.querySelectorAll(".list-songs--wrapper .song");
+console.log(songsInList);
 
 const app = {
-    currentIndex: 0,
+    currentIndex: 1,
     isPlaying: false,
     isRandom: false,
     isRepeat: false,
@@ -213,7 +215,7 @@ const app = {
         },
     ],
 
-    // render bài nhạc vào playlist:
+    // render bài nhạc vào playlist: //phải học lại
     render: function () {
         const htmls = this.songs.map((song, index) => {
             return `<div class="song ${
@@ -267,13 +269,15 @@ const app = {
             if (audio.duration) {
                 progress.value = (audio.currentTime / audio.duration) * 100;
                 if (audio.currentTime == audio.duration) {
-                    progress.value = 0;
-                    pause();
+                    setTimeout(function () {
+                        _this.nextSong();
+                        play();
+                    }, 3000);
                 }
             }
         };
 
-        // tua nhạc phần progress:
+        // tua nhạc phần progress: //phải học lại
 
         progress.addEventListener("change", function (e) {
             audio.currentTime = (Number(e.target.value) * audio.duration) / 100;
@@ -292,6 +296,9 @@ const app = {
             console.log(_this.currentIndex);
             play();
         });
+
+        // chọn bài hát trực tiếp từ playlist:
+        // songsInList.addEventListener("click", function () {});
     },
 
     nextSong: function () {
@@ -314,7 +321,7 @@ const app = {
         }
     },
 
-    // định nghĩa phương thức:
+    // định nghĩa phương thức:  //phải học lại
     defineProperties: function () {
         Object.defineProperty(this, "currentSong", {
             get: function () {
